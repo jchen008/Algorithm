@@ -59,3 +59,31 @@ public class MergeSort{
         System.out.println();
     }
 }
+
+/**
+ * loop invariant: At the start of each iteration of the for loop, the subarray
+ * A[p:k-1] contains the k-p smallest elements of L[1:n1+1] and R[1:n2+1], in
+ * sorted order. Moreover, L[i] and R[j] are the smallest elements of their
+ * arrays that have not been copied back into A.
+ * 
+ * Initialization: Prior to the first iteration of the loop, we have k D p, so
+ * that the subarray A[p:k-1] is empty. This empty subarray contains the k-p=0
+ * smallest elements of L and R, and since i=j=1, both L[i] and R[j] are the
+ * smallest elements of their arrays that have not been copied back into A.
+ * 
+ * Maintenance: To see that each iteration maintains the loop invariant, let us
+ * first suppose that L[i] R[j]. Then L[i] is the smallest element not yet
+ * copied back into A. Because A[p:k-1] contains the k-p smallest elements,
+ * after line 14 copies L[i] into A[k] , the subarray A[p:k] will contain the
+ * k-p+1 smallest elements. Incrementing k (in the for loop update) and i (in
+ * line 15) reestablishes the loop invariant for the next iteration. If instead
+ * L[i] > R[j] , then lines 16–17 perform the appropriate action to maintain the
+ * loop invariant.
+ * 
+ * Termination: At termination, k = r + 1. By the loop invariant, the subarray
+ * A[p:k-1] , which is A[p:r] , contains the k-p=r-p+1 smallest elements of
+ * L[1:n1+1] and R[1:n2+1] , in sorted order. The arrays L
+ * and R together contain n1+n2+2=r-p+3 elements. All but the two largest have been
+ * copied back into A, and these two largest elements are the sentinels.
+ * 
+ */
